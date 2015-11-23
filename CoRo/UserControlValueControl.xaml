@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CoRo.UserControlValueControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoRo"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="200">
+    <Grid>
+        <GroupBox Header="{Binding Path=ValueName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Slider x:Name="slider" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="{Binding Path=ValueMinimum}"  Maximum="{Binding Path=ValueMaximum}" TickPlacement="BottomRight" TickFrequency="{Binding Path=ValueTickFrequency}" IsSnapToTickEnabled="True" ValueChanged="slider_ValueChanged"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label x:Name="label" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </Grid>
+            </Grid>
+        </GroupBox>      
+    </Grid>
+</UserControl>

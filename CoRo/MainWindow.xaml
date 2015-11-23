@@ -1,0 +1,220 @@
+﻿<Window x:Class="CoRo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoRo"
+        xmlns:vtk="clr-namespace:Kitware.VTK;assembly=Kitware.VTK" 
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        mc:Ignorable="d"
+        Title="CoRo" Height="1448" Width="1609" WindowState="Maximized" MinWidth="640" MinHeight="480" Icon="./Resources/cr.ico" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Color x:Key="BackgroundColor1" A="255" R="100" G="100" B="100"/>
+        <Color x:Key="BackgroundColor2" A="255" R="50" G="50" B="50"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="treeColumn" Width="125*" MinWidth="10" MaxWidth="250"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="130*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition x:Name="deviceColumn" Width="108.433" MaxWidth="300"/>
+                <ColumnDefinition Width="191.567"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" Width="2" ResizeDirection="Auto" Grid.RowSpan="1" HorizontalAlignment="Stretch" Background="LightGray"/>
+            <GridSplitter Grid.Column="3" Width="2" ResizeDirection="Auto" Grid.RowSpan="1" HorizontalAlignment="Stretch" Background="LightGray"/>
+            <TreeView x:Name="treeView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="WhiteSmoke" BorderBrush="LightGray" BorderThickness="2">
+                <TreeViewItem Header="Cell" IsExpanded="True">
+                    <local:UserControlTreeElement Label="Base" Image="./Resources/axisicon.png" CustomClick = "OnShowCellBaseClick"/>
+                    <local:UserControlTreeElement Label="Floor" Image="./Resources/flooricon.png" CustomClick = "OnShowCellFloorClick"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Robots" IsExpanded="True">
+                    <TreeViewItem IsExpanded="True">
+                        <TreeViewItem.Header>
+                            <local:UserControlTreeElement Label="Workpiece" Image="./Resources/roboticon.png"/>
+                        </TreeViewItem.Header>
+                        <local:UserControlTreeElement Label="Base" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Flange" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Tool" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Path" Image="./Resources/pathicon.png"/>
+                    </TreeViewItem>
+                    <TreeViewItem IsExpanded="True">
+                        <TreeViewItem.Header>
+                            <local:UserControlTreeElement Label="Tool" Image="./Resources/roboticon.png"/>
+                        </TreeViewItem.Header>
+                        <local:UserControlTreeElement Label="Base" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Flange" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Tool" Image="./Resources/axisicon.png"/>
+                        <local:UserControlTreeElement Label="Path" Image="./Resources/pathicon.png"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+
+            </TreeView>
+            <DockPanel x:Name="SimulationPanel" LastChildFill="true" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <DockPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="{StaticResource BackgroundColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource BackgroundColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </DockPanel.Background>
+                <WindowsFormsHost x:Name ="WFHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0,64,0" Loaded="WFHost_Loaded">
+                    <vtk:RenderWindowControl x:Name="renderControl"/>
+                </WindowsFormsHost>
+            </DockPanel>
+            <Button x:Name="buttonTree" Content="3" Grid.Column="2" Height ="20" Width="20" HorizontalAlignment="Left" FontFamily="Marlett" FontSize="16" Foreground="Gray" BorderBrush="LightGray" Click="buttonTree_Click" Margin="0,651"/>
+            <StackPanel Width="64" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,598">
+                <Button x:Name="buttonRobot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Foreground="Gray" BorderBrush="LightGray" ToolTip="Robot" Click="buttonRobot_Click">
+                    <StackPanel>
+                        <Image Source="./Resources/robot_small.png"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonSensor" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Foreground="Gray" BorderBrush="LightGray" ToolTip="Sensor" Click="buttonSensor_Click">
+                    <StackPanel>
+                        <Image Source="./Resources/scanner_small.png"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <TabControl x:Name="tabControl" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="2" BorderBrush="LightGray" Margin="0,-2,0,0" Grid.ColumnSpan="2">
+                <TabItem Header="TabItem" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" FontSize="20" FontWeight="Bold">Robot</Label>
+                        <local:UserControlNumberControl x:Name="controlRobot" Grid.Row="0" HorizontalAlignment="Right" Margin="20,0"></local:UserControlNumberControl>
+                        <Grid Width="300" Height="200" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <local:UserControlConnectionButton x:Name="buttonRobotConnect" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,20" Click="buttonRobotConnect_Click"></local:UserControlConnectionButton>
+                            <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,30" Foreground="LightGray">_________</Label>
+                            <Image Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-60,0,-40,0" Source="./Resources/robot.png"/>
+                            <Label Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Foreground="LightGray">_________</Label>
+                            <Button Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,45,0,0" Height="30" Width="30" Background="Transparent" BorderBrush="LightGray">
+                                <Image Source="./Resources/toolicon.png" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+                            </Button>
+
+                        </Grid>
+                        <GroupBox Header="Control" Grid.Row="2" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Width="280" Height="Auto">
+                            <StackPanel  Margin="10,10,5,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="140"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <RadioButton IsChecked="True">
+                                            <WrapPanel>
+                                                <Image Source="./Resources/axisicon.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                <TextBlock Text="Cartesian" VerticalAlignment="Center"/>
+                                            </WrapPanel>
+                                        </RadioButton>
+                                        <RadioButton Margin="0,10">
+                                            <WrapPanel>
+                                                <Image Source="./Resources/roboticon.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                <TextBlock Text="Axis" VerticalAlignment="Center"/>
+                                            </WrapPanel>
+                                        </RadioButton>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="5,-5">
+                                        <local:UserControlValueControl x:Name="controlIncrement" ValueName="Increment" ValueMinimum="0.1" ValueMaximum="5" ValueTickFrequency="0.1" ValueChanged="controlIncrement_ValueChanged"></local:UserControlValueControl>
+                                        <Label HorizontalAlignment="Right" Margin="39,-10" Foreground="LightGray">|</Label>
+                                    </StackPanel>
+                                </Grid>
+                                <local:UserControlAxisControl x:Name="controlX" Label="X:" Minimum="-900" Maximum="900"></local:UserControlAxisControl>
+                                <local:UserControlAxisControl x:Name="controlY" Label="Y:" Minimum="-900" Maximum="900"></local:UserControlAxisControl>
+                                <local:UserControlAxisControl x:Name="controlZ" Label="Z:" Minimum="0" Maximum="900"></local:UserControlAxisControl>
+                                <local:UserControlAxisControl x:Name="controlA" Label="A:" Minimum="-180" Maximum="180"></local:UserControlAxisControl>
+                                <local:UserControlAxisControl x:Name="controlB" Label="B:" Minimum="-180" Maximum="180"></local:UserControlAxisControl>
+                                <local:UserControlAxisControl x:Name="controlC" Label="C:" Minimum="-180" Maximum="180"></local:UserControlAxisControl>
+                                <Label HorizontalAlignment="Right" Margin="0,-14,43,0" Foreground="LightGray">|</Label>
+                                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-5,35,0" Height="30" Width="30" Background="Transparent"  BorderBrush="LightGray">
+                                    <Image Source="./Resources/homeicon.png" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+                                </Button>
+
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Program" Grid.Row="3" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Width="280" Height="236">
+
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="TabItem" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" FontSize="20" FontWeight="Bold">Sensor</Label>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <local:UserControlConnectionButton x:Name="buttonSensorConnect" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,50,0,0" Click="buttonSensorConnect_Click"></local:UserControlConnectionButton>
+                            <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,45,0,0" Foreground="LightGray">_________</Label>
+                            <Image Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="150" Source="./Resources/scanner.png" Margin="-40,0,0,0"/>
+                        </Grid>
+                        <GroupBox Header="Control" Grid.Row="2" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Width="280" Height="Auto">
+                            <StackPanel  Margin="10,10,5,5">
+                                <local:UserControlValueControl x:Name="controlShuttertime" ValueName="Shuttertime" ValueMinimum="10" ValueMaximum="1000" ValueTickFrequency="10" ValueUnit="µm" ValueChanged="controlShuttertime_ValueChanged"></local:UserControlValueControl>
+                                <!--Color extension-->
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Measurement" Grid.Row="3" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Width="280">
+                            <StackPanel  Margin="10,10,5,5">
+                                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="30" Background="Transparent" BorderBrush="LightGray">
+                                    <Image Source="./Resources/eyeblack.png" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+                                </Button>
+                                <d3:ChartPlotter Name="plotter" Height="200">
+                                    <d3:VerticalAxisTitle Content="z"/>
+                                    <d3:HorizontalAxisTitle Content="x"/>
+                                    <d3:HorizontalLine Value="125" Stroke="Gray" StrokeThickness="1"/>
+                                    <d3:HorizontalLine Value="265" Stroke="Gray" StrokeThickness="1"/>
+                                    <d3:VerticalLine Value="-71.75" Stroke="Gray" StrokeThickness="1"/>
+                                    <d3:VerticalLine Value="71.75" Stroke="Gray" StrokeThickness="1"/>
+                                    <d3:LineGraph x:Name="linegraph" Stroke="Red" StrokeThickness="2"/>
+
+                                </d3:ChartPlotter>
+
+
+                                <!--Point counter, Minimum, Maximum-->
+                                <!--Big window-->
+                                <!--Save profile-->
+
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <DockPanel Width="70" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+            <Image HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" Source="./Resources/cr.png" Width="144"/>
+        </DockPanel>
+        <DockPanel Width="270" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right">
+            <Image HorizontalAlignment="Left" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" Source="./Resources/aut.png"/>
+            <Image HorizontalAlignment="Left" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" Source="./Resources/nct.png"/>
+        </DockPanel>
+        <Label Grid.Row="2" VerticalAlignment="Center">Bereit</Label>
+        <Label Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Version 2.0</Label>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1086,23,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="-1.667,-0.3" Height="23" Click="Button_Click"/>
+    </Grid>
+</Window>
