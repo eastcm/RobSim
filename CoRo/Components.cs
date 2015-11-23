@@ -106,16 +106,23 @@ namespace CoRo
             vtkActor rob04 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_04.stl"));
             vtkActor rob05 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_05.stl"));
 
+            //rob02.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
+            rob02.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
+            rob02.RotateY(30);
+            //rob02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            
+
             rob00.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             rob01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             rob02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            rob02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            
             rob03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             rob04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             rob05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
 
             List<vtkActor> vtkPointList = new List<vtkActor>();
             vtkActor point00 = drawPoint(points[0].X, points[0].Y, points[0].Z);
+            double[] defaultPoint00 = { 25, 0, 400};
             vtkActor point01 = drawPoint(points[1].X, points[1].Y, points[1].Z);
             vtkActor point02 = drawPoint(points[2].X, points[2].Y, points[2].Z);
             vtkActor point03 = drawPoint(points[3].X, points[3].Y, points[3].Z);
@@ -128,9 +135,10 @@ namespace CoRo
             vtkPointList.Add(point04);
             vtkPointList.Add(point05);
             foreach(vtkActor actor in vtkPointList){
-                actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
-                actor.SetOrigin(points[0].X, points[0].Y, points[0].Z);
-                actor.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+                //actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
+                actor.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
+                actor.RotateY(30);
+                //actor.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
                 asse.AddPart(actor);
             }
             
@@ -150,13 +158,18 @@ namespace CoRo
 
             foreach (vtkActor actor in vtkLineList)
             {
-                actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
-                actor.SetOrigin(points[0].X, points[0].Y, points[0].Z);
-                actor.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+                //actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
+                actor.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
+                actor.RotateY(30);
+                //actor.SetPosition(robotBase.X,robotBase.Y,robotBase.Z);
                 asse.AddPart(actor);
             }
-
+            double[] x  = line00.GetOrigin();
+            vtkActor origin = drawPoint(x[0], x[1], x[2]);
+            origin.GetProperty().SetColor(0, 0, 255);
+            asse.AddPart(origin);
             vtkActor robotBasePoint = drawPoint(robotBase.X, robotBase.Y, robotBase.Z);
+            robotBasePoint.GetProperty().SetColor(255, 0, 0);
             asse.AddPart(robotBasePoint);
            
 

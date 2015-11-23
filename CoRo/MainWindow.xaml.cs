@@ -172,15 +172,16 @@ namespace CoRo
 
         private void WFHost_Loaded(object sender, RoutedEventArgs e)
         {
+            
             renderer = renderControl.RenderWindow.GetRenderers().GetFirstRenderer();
             renderer.GradientBackgroundOn();
             renderer.SetBackground((double)colorBackground.R / 255, (double)colorBackground.G / 255, (double)colorBackground.B / 255);
             renderer.SetBackground2((double)colorBackground2.R / 255, (double)colorBackground2.G / 255, (double)colorBackground2.B / 255);
 
-            
+
 
             robot.Pos.A = 0;
-            robot.Pos.B = 30;
+            robot.Pos.B = 0;
             robot.Pos.C = 0;
             robot.Pos.X = 0;
             robot.Pos.Y = 0;
@@ -193,18 +194,11 @@ namespace CoRo
             renderer.AddActor(components.drawCoordinates());
 
             renderer.AddActor(components.drawRob(robot.Pos, robot.Axs));
-            /*
-            Robot robot2 = new Robot();
-            robot2.Pos.A = 0;
-            robot2.Pos.B = 0;
-            robot2.Pos.C = 0;
-            robot2.Pos.X = 500;
-            robot2.Pos.Y = 500;
-            robot2.Pos.Z = 0;
-            renderer.AddActor(components.drawRob(robot2.Pos, robot2.Axs));
-            */
-            renderer.ResetCamera();
+            
+            
 
+            renderer.ResetCamera();
+             
         }
 
 
@@ -264,11 +258,24 @@ namespace CoRo
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             robot.Pos.B += 50;
             renderer.AddActor(components.drawRob(robot.Pos, robot.Axs));
         }
+    }
 
+    class vtkTimerCallback : Kitware.VTK.vtkCommand
+    {
+        public override void Execute()
+        {
+            ++this.TimerCount;
 
+            actor.SetPosition(this.TimerCount, this.TimerCount, 0);
+            iren.GetRenderWindow().Render();
+        }
+
+        private int TimerCount = 0;
+        public vtkActor actor;
+        public vtkRenderWindowInteractor iren;
     }
 }
