@@ -24,22 +24,6 @@ using System.Runtime.InteropServices;
 namespace CoRo
 {
 
-    public class myCom : vtkCommand
-    {
-        public vtkActor actor;
-
-        public static myCom New()
-        {
-            return new myCom();
-        }
-        public override void Execute(vtkObject caller, uint eventId, IntPtr callData)
-        {
-            actor.SetPosition(30, 30, 30);
-            vtkRenderWindowInteractor iren = vtkRenderWindowInteractor.SafeDownCast(caller);
-            iren.GetRenderWindow().Render();
-        }
-    }
-
     public partial class MainWindow : Window
     {
         Color colorBackground = Color.FromArgb(255, 50, 50, 50);
@@ -166,39 +150,74 @@ namespace CoRo
 
 
         Components components;
-        public Robot robot = new Robot();
+        Robot robot = new Robot();
+        Robot robot2 = new Robot();
         vtkRenderer renderer;
-
+        myRobot myRobot;
+        myRobot myRobot2;
+        vtkAssembly myRobotAssembly;
+        vtkAssembly myRobotAssembly2;
 
         private void WFHost_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             renderer = renderControl.RenderWindow.GetRenderers().GetFirstRenderer();
             renderer.GradientBackgroundOn();
             renderer.SetBackground((double)colorBackground.R / 255, (double)colorBackground.G / 255, (double)colorBackground.B / 255);
             renderer.SetBackground2((double)colorBackground2.R / 255, (double)colorBackground2.G / 255, (double)colorBackground2.B / 255);
+            vtkRenderWindow renderWindow = vtkRenderWindow.New();
+            renderWindow.AddRenderer(renderer);
+            vtkRenderWindowInteractor renderWindowInteractor = vtkRenderWindowInteractor.New();
+            renderWindowInteractor.SetRenderWindow(renderWindow);
 
+            components = new Components();
 
-
+            renderer.AddActor(components.drawFloor());
+            renderer.AddActor(components.drawCoordinates());
+           
+            
             robot.Pos.A = 0;
             robot.Pos.B = 0;
             robot.Pos.C = 0;
             robot.Pos.X = 0;
             robot.Pos.Y = 0;
             robot.Pos.Z = 0;
-
-
-            components = new Components();
-
-            renderer.AddActor(components.drawFloor());
-            renderer.AddActor(components.drawCoordinates());
-
-            renderer.AddActor(components.drawRob(robot.Pos, robot.Axs));
+            robot.Axs.X = 0;
+            robot.Axs.Y = -90;
+            robot.Axs.Z = 90;
+            robot.Axs.A = 0;
+            robot.Axs.B = 0;
+            robot.Axs.C = 0;
+            myRobot = new myRobot(robot.Pos, robot.Axs);
+            myRobotAssembly = myRobot.drawRob();
+            renderer.AddActor(myRobotAssembly);
             
-            
+
+            robot2.Pos.A = 0;
+            robot2.Pos.B = 0;
+            robot2.Pos.C = 0;
+            robot2.Pos.X = 300;
+            robot2.Pos.Y = 300;
+            robot2.Pos.Z = 0;
+            robot2.Axs.X = 0;
+            robot2.Axs.Y = -90;
+            robot2.Axs.Z = 90;
+            robot2.Axs.A = 0;
+            robot2.Axs.B = 0;
+            robot2.Axs.C = 0;
+            myRobot2 = new myRobot(robot2.Pos, robot2.Axs);
+            myRobotAssembly2 = myRobot2.drawRob();
+            renderer.AddActor(myRobotAssembly2);
+
+
 
             renderer.ResetCamera();
-             
+
+            //vtkTimerCallback cb = vtkTimerCallback.New();
+            //cb.actor = floor;
+            //cb.actor = floor;
+            //cb.iren = renderer            
+
         }
 
 
@@ -259,22 +278,31 @@ namespace CoRo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            robot.Pos.B += 50;
-            renderer.AddActor(components.drawRob(robot.Pos, robot.Axs));
+
+
+            
+            renderer.RemoveActor(myRobotAssembly);
+            renderer.RemoveActor(myRobotAssembly2);
+
+            myRobotAssembly = myRobot.rotateZ(30);
+            myRobotAssembly2 = myRobot2.rotateZ(-15);
+            renderer.AddActor(myRobotAssembly);
+            renderer.AddActor(myRobotAssembly2);
         }
     }
 
-    class vtkTimerCallback : Kitware.VTK.vtkCommand
+    public class vtkTimerCallback : vtkCommand
     {
-        public override void Execute()
+        public static vtkTimerCallback New()
         {
-            ++this.TimerCount;
-
-            actor.SetPosition(this.TimerCount, this.TimerCount, 0);
-            iren.GetRenderWindow().Render();
+            return new vtkTimerCallback();
         }
 
-        private int TimerCount = 0;
+        public override void Execute(vtkObject caller, uint eventId, IntPtr callData)
+        {
+            base.Execute(caller, eventId, callData);
+        }
+        //private int TimerCount = 0;
         public vtkActor actor;
         public vtkRenderWindowInteractor iren;
     }

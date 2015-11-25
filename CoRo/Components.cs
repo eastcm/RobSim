@@ -11,8 +11,6 @@ namespace CoRo
         public vtkAxesActor axes;
         public vtkActor floor;
 
-
-
         public vtkAxesActor drawCoordinates()
         {
 
@@ -20,7 +18,7 @@ namespace CoRo
             vtkTransform transform = new vtkTransform();
             transform.Translate(-500, 0.0, 0.0);
             axes = new vtkAxesActor();
-            axes.SetUserTransform(transform);
+            axes.SetUserTransform(transform);            
             axes.SetTotalLength(200, 200, 200);
             axes.AxisLabelsOff();
             return axes;
@@ -42,7 +40,7 @@ namespace CoRo
             return floor;
         }
 
-        public vtkAssembly drawRob(Geometry.Position robotBase, Geometry.Position angles)
+        public List<Point> forwardKinematic(Geometry.Position robotBase, Geometry.Position angles)
         {
             List<Point> points = new List<Point>();
             Point prior = new Point(robotBase.X, robotBase.Y, robotBase.Z);
@@ -97,95 +95,228 @@ namespace CoRo
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
             points.Add(tempPoint);
 
-            vtkAssembly asse = vtkAssembly.New();
+            return points;
+        }
+    }
 
-            vtkActor rob00 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
-            vtkActor rob01 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_01.stl"));
-            vtkActor rob02 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_02.stl"));
-            vtkActor rob03 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_03.stl"));
-            vtkActor rob04 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_04.stl"));
-            vtkActor rob05 = readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_05.stl"));
+    class myRobot : Simulation
+    {
+        vtkActor stl00;
+        vtkActor stl01;
+        vtkActor stl02;
+        vtkActor stl03;
+        vtkActor stl04;
+        vtkActor stl05;
 
-            //rob02.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
-            rob02.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
-            rob02.RotateY(30);
-            //rob02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            
+        vtkActor point00;
+        vtkActor point01;
+        vtkActor point02;
+        vtkActor point03;
+        vtkActor point04;
+        vtkActor point05;
 
-            rob00.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            rob01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            rob02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            
-            rob03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            rob04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            rob05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+        vtkActor line00;
+        vtkActor line01;
+        vtkActor line02;
+        vtkActor line03;
+        vtkActor line04;
 
-            List<vtkActor> vtkPointList = new List<vtkActor>();
-            vtkActor point00 = drawPoint(points[0].X, points[0].Y, points[0].Z);
-            double[] defaultPoint00 = { 25, 0, 400};
-            vtkActor point01 = drawPoint(points[1].X, points[1].Y, points[1].Z);
-            vtkActor point02 = drawPoint(points[2].X, points[2].Y, points[2].Z);
-            vtkActor point03 = drawPoint(points[3].X, points[3].Y, points[3].Z);
-            vtkActor point04 = drawPoint(points[4].X, points[4].Y, points[4].Z);
-            vtkActor point05 = drawPoint(points[5].X, points[5].Y, points[5].Z);
-            vtkPointList.Add(point00);
-            vtkPointList.Add(point01);
-            vtkPointList.Add(point02);
-            vtkPointList.Add(point03);
-            vtkPointList.Add(point04);
-            vtkPointList.Add(point05);
-            foreach(vtkActor actor in vtkPointList){
-                //actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
-                actor.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
-                actor.RotateY(30);
-                //actor.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-                asse.AddPart(actor);
-            }
-            
 
-            List<vtkActor> vtkLineList = new List<vtkActor>();
-            vtkActor line00 = drawLines(points[0].X, points[0].Y, points[0].Z, points[1].X, points[1].Y, points[1].Z);
-            vtkActor line01 = drawLines(points[1].X, points[1].Y, points[1].Z, points[2].X, points[2].Y, points[2].Z);
-            vtkActor line02 = drawLines(points[2].X, points[2].Y, points[2].Z, points[3].X, points[3].Y, points[3].Z);
-            vtkActor line03 = drawLines(points[3].X, points[3].Y, points[3].Z, points[4].X, points[4].Y, points[4].Z);
-            vtkActor line04 = drawLines(points[4].X, points[4].Y, points[4].Z, points[5].X, points[5].Y, points[5].Z);
-            vtkLineList.Add(line00);
-            vtkLineList.Add(line01);
-            vtkLineList.Add(line02);
-            vtkLineList.Add(line03);
-            vtkLineList.Add(line04);
-            
+        List<Point> pointList;
+        List<vtkActor> pointAndLineActors;
+        List<vtkActor> stlActors;
+        List<vtkActor> stlActorsZ;
+        Components components = new Components();
+        myVtk myVtk = new myVtk();
 
-            foreach (vtkActor actor in vtkLineList)
+        vtkAssembly linesAndPoints;
+        Geometry.Position robotBase;
+        Geometry.Position angles;
+
+        public vtkAssembly drawRob()
+        {
+            pointList = components.forwardKinematic(robotBase, angles);
+
+            stl00 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
+            stl01 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_01.stl"));
+            stl02 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_02.stl"));
+            stl03 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_03.stl"));
+            stl04 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_04.stl"));
+            stl05 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_05.stl"));
+
+
+            stl00.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+
+            stl01.RotateZ(robotBase.A);
+            stl02.RotateZ(robotBase.A);
+            stl03.RotateZ(robotBase.A);
+            stl04.RotateZ(robotBase.A);
+            stl05.RotateZ(robotBase.A);
+
+            stlActors.Add(stl00);
+            stlActors.Add(stl01);
+            stlActors.Add(stl02);
+            stlActors.Add(stl03);
+            stlActors.Add(stl04);
+            stlActors.Add(stl05);
+
+            stlActorsZ.Add(stl01);
+            stlActorsZ.Add(stl02);
+            stlActorsZ.Add(stl03);
+            stlActorsZ.Add(stl04);
+            stlActorsZ.Add(stl05);
+
+
+
+            point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
+            point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
+            point02 = myVtk.drawPoint(pointList[2].X, pointList[2].Y, pointList[2].Z);
+            point03 = myVtk.drawPoint(pointList[3].X, pointList[3].Y, pointList[3].Z);
+            point04 = myVtk.drawPoint(pointList[4].X, pointList[4].Y, pointList[4].Z);
+            point05 = myVtk.drawPoint(pointList[5].X, pointList[5].Y, pointList[5].Z);
+
+            pointAndLineActors.Add(point00);
+            pointAndLineActors.Add(point01);
+            pointAndLineActors.Add(point02);
+            pointAndLineActors.Add(point03);
+            pointAndLineActors.Add(point04);
+            pointAndLineActors.Add(point05);
+
+
+            line00 = myVtk.drawLines(pointList[0].X, pointList[0].Y, pointList[0].Z, pointList[1].X, pointList[1].Y, pointList[1].Z);
+            line01 = myVtk.drawLines(pointList[1].X, pointList[1].Y, pointList[1].Z, pointList[2].X, pointList[2].Y, pointList[2].Z);
+            line02 = myVtk.drawLines(pointList[2].X, pointList[2].Y, pointList[2].Z, pointList[3].X, pointList[3].Y, pointList[3].Z);
+            line03 = myVtk.drawLines(pointList[3].X, pointList[3].Y, pointList[3].Z, pointList[4].X, pointList[4].Y, pointList[4].Z);
+            line04 = myVtk.drawLines(pointList[4].X, pointList[4].Y, pointList[4].Z, pointList[5].X, pointList[5].Y, pointList[5].Z);
+            pointAndLineActors.Add(line00);
+            pointAndLineActors.Add(line01);
+            pointAndLineActors.Add(line02);
+            pointAndLineActors.Add(line03);
+            pointAndLineActors.Add(line04);
+
+            foreach (vtkActor actor in pointAndLineActors)
             {
-                //actor.SetPosition(robotBase.X - points[0].X, robotBase.Y - points[0].Y, robotBase.Z - points[0].Z);
-                actor.SetOrigin(robotBase.X + points[0].X, robotBase.Y + points[0].Y, robotBase.Z + points[0].Z);
-                actor.RotateY(30);
-                //actor.SetPosition(robotBase.X,robotBase.Y,robotBase.Z);
-                asse.AddPart(actor);
+                linesAndPoints.AddPart(actor);
             }
-            double[] x  = line00.GetOrigin();
-            vtkActor origin = drawPoint(x[0], x[1], x[2]);
-            origin.GetProperty().SetColor(0, 0, 255);
-            asse.AddPart(origin);
-            vtkActor robotBasePoint = drawPoint(robotBase.X, robotBase.Y, robotBase.Z);
-            robotBasePoint.GetProperty().SetColor(255, 0, 0);
-            asse.AddPart(robotBasePoint);
-           
+            foreach (vtkActor actor in stlActors)
+            {
+                linesAndPoints.AddPart(actor);
+            }
 
-            asse.AddPart(rob00);
-            asse.AddPart(rob01);
-            asse.AddPart(rob02);
-            //asse.AddPart(rob03);
-            //asse.AddPart(rob04);
-            //asse.AddPart(rob05);
+            return linesAndPoints;
+        }
+        
+        public vtkAssembly rotateZ(double value)
+        {
+            
+            pointList.Clear();
+            pointAndLineActors.Clear();
+            stlActors.Clear();
+            stlActorsZ.Clear();
+            linesAndPoints = vtkAssembly.New();
+            
+            robotBase.A += value;
+            pointList = components.forwardKinematic(robotBase, angles);
+
+            stl00 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
+            stl01 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_01.stl"));
+            stl02 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_02.stl"));
+            stl03 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_03.stl"));
+            stl04 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_04.stl"));
+            stl05 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_05.stl"));
 
 
-            return asse;
+            stl00.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+
+            stl01.RotateZ(robotBase.A);
+            stl02.RotateZ(robotBase.A);
+            stl03.RotateZ(robotBase.A);
+            stl04.RotateZ(robotBase.A);
+            stl05.RotateZ(robotBase.A);
+
+            stlActors.Add(stl00);
+            stlActors.Add(stl01);
+            stlActors.Add(stl02);
+            stlActors.Add(stl03);
+            stlActors.Add(stl04);
+            stlActors.Add(stl05);
+
+            stlActorsZ.Add(stl01);
+            stlActorsZ.Add(stl02);
+            stlActorsZ.Add(stl03);
+            stlActorsZ.Add(stl04);
+            stlActorsZ.Add(stl05);
+
+            
+
+            point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
+            point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
+            point02 = myVtk.drawPoint(pointList[2].X, pointList[2].Y, pointList[2].Z);
+            point03 = myVtk.drawPoint(pointList[3].X, pointList[3].Y, pointList[3].Z);
+            point04 = myVtk.drawPoint(pointList[4].X, pointList[4].Y, pointList[4].Z);
+            point05 = myVtk.drawPoint(pointList[5].X, pointList[5].Y, pointList[5].Z);
+
+            
+
+            pointAndLineActors.Add(point00);
+            pointAndLineActors.Add(point01);
+            pointAndLineActors.Add(point02);
+            pointAndLineActors.Add(point03);
+            pointAndLineActors.Add(point04);
+            pointAndLineActors.Add(point05);
+
+
+            line00 = myVtk.drawLines(pointList[0].X, pointList[0].Y, pointList[0].Z, pointList[1].X, pointList[1].Y, pointList[1].Z);
+            line01 = myVtk.drawLines(pointList[1].X, pointList[1].Y, pointList[1].Z, pointList[2].X, pointList[2].Y, pointList[2].Z);
+            line02 = myVtk.drawLines(pointList[2].X, pointList[2].Y, pointList[2].Z, pointList[3].X, pointList[3].Y, pointList[3].Z);
+            line03 = myVtk.drawLines(pointList[3].X, pointList[3].Y, pointList[3].Z, pointList[4].X, pointList[4].Y, pointList[4].Z);
+            line04 = myVtk.drawLines(pointList[4].X, pointList[4].Y, pointList[4].Z, pointList[5].X, pointList[5].Y, pointList[5].Z);
+            pointAndLineActors.Add(line00);
+            pointAndLineActors.Add(line01);
+            pointAndLineActors.Add(line02);
+            pointAndLineActors.Add(line03);
+            pointAndLineActors.Add(line04);
+
+            foreach (vtkActor actor in pointAndLineActors)
+            {
+                linesAndPoints.AddPart(actor);
+                
+            }
+            foreach (vtkActor actor in stlActors)
+            {
+                linesAndPoints.AddPart(actor);
+                
+            }
+
+            return linesAndPoints;
+            
         }
 
+        public myRobot(Geometry.Position robotBase, Geometry.Position angles)
+        {
+            this.robotBase = robotBase;
+            this.angles = angles;
 
-        private vtkActor drawPoint(double x, double y, double z)
+            linesAndPoints = vtkAssembly.New();
+            pointAndLineActors = new List<vtkActor>();
+            stlActors = new List<vtkActor>();
+            stlActorsZ = new List<vtkActor>();
+        }
+    }
+
+    public class myVtk
+    {
+        public vtkActor drawPoint(double x, double y, double z)
         {
             vtkPoints vtkPoints = vtkPoints.New();
             double[,] p = new double[,] { { x, y, z } };
@@ -213,7 +344,8 @@ namespace CoRo
             return pointActor;
         }
 
-        private vtkActor drawLines(double x1, double y1, double z1, double x2, double y2, double z2)
+
+        public vtkActor drawLines(double x1, double y1, double z1, double x2, double y2, double z2)
         {
             vtkPolyData pointsAndLinesPoly = vtkPolyData.New();
             vtkPoints pts = new vtkPoints();
@@ -246,6 +378,6 @@ namespace CoRo
 
             return actorSTL;
         }
-
     }
+
 }
