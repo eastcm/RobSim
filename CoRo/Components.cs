@@ -13,12 +13,11 @@ namespace CoRo
 
         public vtkAxesActor drawCoordinates()
         {
-
             //vtkRenderer Renderer = ((MainWindow)System.Windows.Application.Current.MainWindow).renderControl.RenderWindow.GetRenderers().GetFirstRenderer();
             vtkTransform transform = new vtkTransform();
             transform.Translate(-500, 0.0, 0.0);
             axes = new vtkAxesActor();
-            axes.SetUserTransform(transform);            
+            axes.SetUserTransform(transform);
             axes.SetTotalLength(200, 200, 200);
             axes.AxisLabelsOff();
             return axes;
@@ -107,6 +106,7 @@ namespace CoRo
         vtkActor stl03;
         vtkActor stl04;
         vtkActor stl05;
+        
 
         vtkActor point00;
         vtkActor point01;
@@ -123,15 +123,33 @@ namespace CoRo
 
 
         List<Point> pointList;
+        public List<Point> getPointList
+        {
+            get { return pointList; }
+        }
         List<vtkActor> pointAndLineActors;
         List<vtkActor> stlActors;
         List<vtkActor> stlActorsZ;
         Components components = new Components();
         myVtk myVtk = new myVtk();
 
-        vtkAssembly linesAndPoints;
-        Geometry.Position robotBase;
-        Geometry.Position angles;
+        vtkAssembly linesAndPointsAssembly;
+        public vtkAssembly getLinesAndPointsAssembly
+        {
+            get { return linesAndPointsAssembly; }
+        }
+
+
+        IRob.Geometry.Position robotBase;
+        IRob.Geometry.Position angles;
+        public Geometry.Position getRobotBase
+        {
+            get { return robotBase; }
+        }
+        public Geometry.Position getAngles
+        {
+            get { return angles; }
+        }
 
         public vtkAssembly drawRob()
         {
@@ -152,12 +170,12 @@ namespace CoRo
             stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
 
-            stl01.RotateZ(robotBase.A);
-            stl02.RotateZ(robotBase.A);
-            stl03.RotateZ(robotBase.A);
-            stl04.RotateZ(robotBase.A);
-            stl05.RotateZ(robotBase.A);
-
+            stl01.RotateZ(-angles.X);
+            stl02.RotateZ(-angles.X);
+            stl03.RotateZ(-angles.X);
+            stl04.RotateZ(-angles.X);
+            stl05.RotateZ(-angles.X);
+            
             stlActors.Add(stl00);
             stlActors.Add(stl01);
             stlActors.Add(stl02);
@@ -201,26 +219,26 @@ namespace CoRo
 
             foreach (vtkActor actor in pointAndLineActors)
             {
-                linesAndPoints.AddPart(actor);
+                linesAndPointsAssembly.AddPart(actor);
             }
             foreach (vtkActor actor in stlActors)
             {
-                linesAndPoints.AddPart(actor);
+                linesAndPointsAssembly.AddPart(actor);
             }
 
-            return linesAndPoints;
+            return linesAndPointsAssembly;
         }
-        
-        public vtkAssembly rotateZ(double value)
+
+        public vtkAssembly rotateAxsA1(double value)
         {
-            
+
             pointList.Clear();
             pointAndLineActors.Clear();
             stlActors.Clear();
             stlActorsZ.Clear();
-            linesAndPoints = vtkAssembly.New();
-            
-            robotBase.A += value;
+            linesAndPointsAssembly = vtkAssembly.New();
+
+            angles.X += value;
             pointList = components.forwardKinematic(robotBase, angles);
 
             stl00 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
@@ -238,12 +256,12 @@ namespace CoRo
             stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
 
-            stl01.RotateZ(robotBase.A);
-            stl02.RotateZ(robotBase.A);
-            stl03.RotateZ(robotBase.A);
-            stl04.RotateZ(robotBase.A);
-            stl05.RotateZ(robotBase.A);
-
+            stl01.RotateZ(-angles.X);
+            stl02.RotateZ(-angles.X);
+            stl03.RotateZ(-angles.X);
+            stl04.RotateZ(-angles.X);
+            stl05.RotateZ(-angles.X);
+            
             stlActors.Add(stl00);
             stlActors.Add(stl01);
             stlActors.Add(stl02);
@@ -257,7 +275,7 @@ namespace CoRo
             stlActorsZ.Add(stl04);
             stlActorsZ.Add(stl05);
 
-            
+
 
             point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
             point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
@@ -266,7 +284,7 @@ namespace CoRo
             point04 = myVtk.drawPoint(pointList[4].X, pointList[4].Y, pointList[4].Z);
             point05 = myVtk.drawPoint(pointList[5].X, pointList[5].Y, pointList[5].Z);
 
-            
+
 
             pointAndLineActors.Add(point00);
             pointAndLineActors.Add(point01);
@@ -289,17 +307,16 @@ namespace CoRo
 
             foreach (vtkActor actor in pointAndLineActors)
             {
-                linesAndPoints.AddPart(actor);
-                
+                linesAndPointsAssembly.AddPart(actor);
+
             }
             foreach (vtkActor actor in stlActors)
             {
-                linesAndPoints.AddPart(actor);
-                
-            }
+                linesAndPointsAssembly.AddPart(actor);
 
-            return linesAndPoints;
-            
+            }
+            return linesAndPointsAssembly;
+
         }
 
         public myRobot(Geometry.Position robotBase, Geometry.Position angles)
@@ -307,10 +324,11 @@ namespace CoRo
             this.robotBase = robotBase;
             this.angles = angles;
 
-            linesAndPoints = vtkAssembly.New();
+            linesAndPointsAssembly = vtkAssembly.New();
             pointAndLineActors = new List<vtkActor>();
             stlActors = new List<vtkActor>();
             stlActorsZ = new List<vtkActor>();
+
         }
     }
 
@@ -343,7 +361,6 @@ namespace CoRo
             pointActor.GetProperty().SetPointSize(10);
             return pointActor;
         }
-
 
         public vtkActor drawLines(double x1, double y1, double z1, double x2, double y2, double z2)
         {
@@ -379,5 +396,4 @@ namespace CoRo
             return actorSTL;
         }
     }
-
 }

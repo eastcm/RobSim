@@ -216,5 +216,8 @@
         <Label Grid.Row="2" VerticalAlignment="Center">Bereit</Label>
         <Label Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Version 2.0</Label>
         <Button Content="Button" HorizontalAlignment="Left" Margin="1086,23,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="-1.667,-0.3" Height="23" Click="Button_Click"/>
+        <Label x:Name="point00_X" Content="Label" HorizontalAlignment="Left" Margin="280,29,0,0" VerticalAlignment="Top" Height="26" Width="70"/>
+        <Label x:Name="point00_Z" Content="Label" HorizontalAlignment="Left" Margin="450,28,0,0" VerticalAlignment="Top" Width="70"/>
+        <Label x:Name="point00_Y" Content="Label" HorizontalAlignment="Left" Margin="363,28,0,0" VerticalAlignment="Top" Height="27" Width="70"/>
     </Grid>
 </Window>
