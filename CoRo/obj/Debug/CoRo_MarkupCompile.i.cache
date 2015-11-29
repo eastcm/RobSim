@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\merchelch49090\Documents\Visual Studio 2013\Projects\RobSim\CoRo\obj\Debug\
+C:\Users\CM\Documents\Visual Studio 2013\Projects\RobSim\CoRo\obj\Debug\
 CoRo
 none
 false
 DEBUG;TRACE
-C:\Users\merchelch49090\Documents\Visual Studio 2013\Projects\RobSim\CoRo\App.xaml
+C:\Users\CM\Documents\Visual Studio 2013\Projects\RobSim\CoRo\App.xaml
 6-1691479831
 
-15-1758854568
-311639406666
+1522496664
+311864661107
 MainWindow.xaml;UserControlAxisControl.xaml;UserControlConnectionButton.xaml;UserControlNumberControl.xaml;UserControlTreeElement.xaml;UserControlValueControl.xaml;
 
-True
+False
 

@@ -150,7 +150,7 @@ namespace CoRo
         private void WFHost_Loaded(object sender, RoutedEventArgs e)
         {
 
-            
+
             renderer = renderControl.RenderWindow.GetRenderers().GetFirstRenderer();
             renderer.GradientBackgroundOn();
             renderer.SetBackground((double)colorBackground.R / 255, (double)colorBackground.G / 255, (double)colorBackground.B / 255);
@@ -172,18 +172,24 @@ namespace CoRo
             robot.Pos.A = 0;
             robot.Pos.B = 0;
             robot.Pos.C = 0;
-           
+
             robot.Axs.X = 0;
             robot.Axs.Y = -90;
             robot.Axs.Z = 90;
             robot.Axs.A = 0;
             robot.Axs.B = 0;
             robot.Axs.C = 0;
+
+            myRobot = new myRobot(robot.Pos, robot.Axs);
+            myRobotAssembly = myRobot.getRobotModel;
+            renderer.AddActor(myRobotAssembly);
+
+            /*
             myRobot = new myRobot(robot.Pos, robot.Axs);
             myRobotAssembly = myRobot.drawRob();
             renderer.AddActor(myRobotAssembly);
 
-
+            /*
             robot2.Pos.X = 300;
             robot2.Pos.Y = 300;
             robot2.Pos.Z = 0;
@@ -201,11 +207,8 @@ namespace CoRo
             myRobot2 = new myRobot(robot2.Pos, robot2.Axs);
             myRobotAssembly2 = myRobot2.drawRob();
             renderer.AddActor(myRobotAssembly2);
+            */
 
-            this.point00_X.Content = myRobot.getPointList[0].X;
-            this.point00_Y.Content = myRobot.getPointList[0].Y;
-            this.point00_Z.Content = myRobot.getPointList[0].Z;
-            
             renderer.ResetCamera();
         }
 
@@ -267,19 +270,12 @@ namespace CoRo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
             renderer.RemoveActor(myRobotAssembly);
-            renderer.RemoveActor(myRobotAssembly2);
 
-            myRobotAssembly = myRobot.rotateAxsA1(30);
-            myRobotAssembly2 = myRobot2.rotateAxsA1(-15);
+            myRobot.rotateA1(10);
+            myRobot.rotateA2(10);
+            renderer.AddActor(myRobot.getRobotModel);
 
-            renderer.AddActor(myRobotAssembly);
-            renderer.AddActor(myRobotAssembly2);
-            
-            this.point00_X.Content = myRobot.getPointList[0].X;
-            this.point00_Y.Content = myRobot.getPointList[0].Y;
-            this.point00_Z.Content = myRobot.getPointList[0].Z;
         }
     }
 
@@ -296,17 +292,17 @@ namespace CoRo
         public vtkRenderWindowInteractor iren;
     }
 
-    public class myCommand : vtkCommand 
-     { 
-         public myCommand() 
-         { 
-             
-         } 
+    public class myCommand : vtkCommand
+    {
+        public myCommand()
+        {
 
-         public override void Execute(vtkObject caller, uint eventId, IntPtr callData) 
-         { 
-             base.Execute(caller, eventId, callData); 
-             Console.WriteLine("Callback!"); 
-         } 
-     } 
+        }
+
+        public override void Execute(vtkObject caller, uint eventId, IntPtr callData)
+        {
+            base.Execute(caller, eventId, callData);
+            Console.WriteLine("Callback!");
+        }
+    }
 }
