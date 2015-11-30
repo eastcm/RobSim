@@ -272,10 +272,18 @@ namespace CoRo
         {
             renderer.RemoveActor(myRobotAssembly);
 
-            myRobot.rotateA1(10);
+            
             myRobot.rotateA2(10);
             renderer.AddActor(myRobot.getRobotModel);
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            renderer.RemoveActor(myRobotAssembly);
+
+            myRobot.rotateA1(10);
+            renderer.AddActor(myRobot.getRobotModel);
         }
     }
 

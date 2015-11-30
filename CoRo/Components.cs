@@ -39,11 +39,11 @@ namespace CoRo
             return floor;
         }
 
-        public List<Point> forwardKinematic(Geometry.Position robotBase, Geometry.Position angles)
+        public List<Position> kinematic(Geometry.Position robotBase, Geometry.Position angles)
         {
-            List<Point> points = new List<Point>();
+            List<Position> positions = new List<Position>();
             Point prior = new Point(robotBase.X, robotBase.Y, robotBase.Z);
-            Point tempPoint;
+            Position tempPoint;
             Matrix4 tempMatrix = new Matrix4();
 
             Matrix4 A1 = GetLinkTransformation(new Link(-angles.X * Math.PI / 180, 400, 25, -Math.PI / 2));
@@ -56,7 +56,7 @@ namespace CoRo
             tempPoint = GetLinkTransformationPoint(A1);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
             Matrix4 sumMatrix = new Matrix4();
             sumMatrix.Multiply(A1, A2);
@@ -64,37 +64,37 @@ namespace CoRo
             tempPoint = GetLinkTransformationPoint(tempMatrix);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
             sumMatrix.Multiply(tempMatrix, A3);
             tempMatrix = sumMatrix;
             tempPoint = GetLinkTransformationPoint(tempMatrix);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
             sumMatrix.Multiply(tempMatrix, A4);
             tempMatrix = sumMatrix;
             tempPoint = GetLinkTransformationPoint(tempMatrix);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
             sumMatrix.Multiply(tempMatrix, A5);
             tempMatrix = sumMatrix;
             tempPoint = GetLinkTransformationPoint(tempMatrix);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
             sumMatrix.Multiply(tempMatrix, A6);
             tempMatrix = sumMatrix;
             tempPoint = GetLinkTransformationPoint(tempMatrix);
             tempPoint.Rotate(robotBase.A, robotBase.B, robotBase.C);
             tempPoint.Translate(robotBase.X, robotBase.Y, robotBase.Z);
-            points.Add(tempPoint);
+            positions.Add(tempPoint);
 
-            return points;
+            return positions;
         }
     }
 
@@ -106,7 +106,6 @@ namespace CoRo
         vtkActor stl03;
         vtkActor stl04;
         vtkActor stl05;
-        
 
         vtkActor point00;
         vtkActor point01;
@@ -121,8 +120,6 @@ namespace CoRo
         vtkActor line03;
         vtkActor line04;
 
-
-       
         Components components = new Components();
         myVtk myVtk = new myVtk();
 
@@ -138,9 +135,8 @@ namespace CoRo
                 return robotModel;
             }
         }
-        List<Point> pointList;
+        List<Position> pointList;
         List<vtkActor> actorList;
-
 
         IRob.Geometry.Position robotBase;
         IRob.Geometry.Position angles;
@@ -249,7 +245,7 @@ namespace CoRo
 
             angles.Y += value;
 
-            pointList = components.forwardKinematic(robotBase, angles);
+            pointList = components.kinematic(robotBase, angles);
 
             point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
             point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
@@ -278,27 +274,50 @@ namespace CoRo
             actorList.Add(line03);
             actorList.Add(line04);
 
+            /*
+            stl02.SetPosition(robotBase.X - pointList[0].X, robotBase.Y - pointList[0].Y, robotBase.Z - pointList[0].Z);
+            stl03.SetPosition(robotBase.X - pointList[0].X, robotBase.Y - pointList[0].Y, robotBase.Z - pointList[0].Z);
+            stl04.SetPosition(robotBase.X - pointList[0].X, robotBase.Y - pointList[0].Y, robotBase.Z - pointList[0].Z);
+            stl05.SetPosition(robotBase.X - pointList[0].X, robotBase.Y - pointList[0].Y, robotBase.Z - pointList[0].Z);
+            */
 
-            stl02.SetOrigin(pointList[0].X, pointList[0].Y, pointList[0].Z);
-            stl03.SetOrigin(pointList[0].X, pointList[0].Y, pointList[0].Z);
-            stl04.SetOrigin(pointList[0].X, pointList[0].Y, pointList[0].Z);
-            stl05.SetOrigin(pointList[0].X, pointList[0].Y, pointList[0].Z);
-                        
+
+            stl02.SetOrigin(robotBase.X + pointList[0].X, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z);
+            stl03.SetOrigin(robotBase.X + pointList[0].X, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z);
+            stl04.SetOrigin(robotBase.X + pointList[0].X, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z);
+            stl05.SetOrigin(robotBase.X + pointList[0].X, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z);
+
+
+
+            double[] x = stl02.GetOrigin();
+            vtkActor ori = myVtk.drawPoint(x[0], x[1], x[2]);
+            ori.GetProperty().SetColor(0, 0, 255);
+            actorList.Add(ori);
+
+
             stl02.RotateY(value);
             stl03.RotateY(value);
             stl04.RotateY(value);
             stl05.RotateY(value);
+
+            /*
+            stl02.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            */
+
+            //stl02.SetPosition(+pointList[0].X, +pointList[0].Y, +pointList[0].Z);
+            //stl03.SetPosition(+pointList[0].X, +pointList[0].Y, +pointList[0].Z);
+            //stl04.SetPosition(+pointList[0].X, +pointList[0].Y, +pointList[0].Z);
+            //stl05.SetPosition(+pointList[0].X, +pointList[0].Y, +pointList[0].Z);
         }
 
         public void rotateA1(double value)
         {
-            pointList.Clear();
-            actorList.Clear();
-            
-
             angles.X -= value;
-            
-            pointList = components.forwardKinematic(robotBase, angles);
+
+            pointList = components.kinematic(robotBase, angles);
 
             point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
             point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
@@ -327,18 +346,42 @@ namespace CoRo
             actorList.Add(line03);
             actorList.Add(line04);
 
-            stl00.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
-            stl01.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
-            stl02.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
-            stl03.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
-            stl04.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
-            stl05.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
 
-            stl01.RotateZ(value);            
-            stl02.RotateZ(value);
-            stl03.RotateZ(value);
-            stl04.RotateZ(value);
-            stl05.RotateZ(value);
+            stl01.SetPosition(-robotBase.X, -robotBase.Y, -robotBase.Z);
+            stl02.SetPosition(-robotBase.X - 25, -robotBase.Y, -robotBase.Z - 400);
+            stl03.SetPosition(-robotBase.X - 25, -robotBase.Y, -robotBase.Z - 855);
+            stl04.SetPosition(-robotBase.X, -robotBase.Y, robotBase.Z - 890);
+            stl05.SetPosition(-robotBase.X - 445, -robotBase.Y, -robotBase.Z - 890);
+
+            
+            stl01.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
+            stl02.SetOrigin(robotBase.X + 25, robotBase.Y, robotBase.Z + 400);
+            stl03.SetOrigin(robotBase.X + 25, robotBase.Y, robotBase.Z + 855);
+            stl04.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z + 890);
+            stl05.SetOrigin(robotBase.X + 445, robotBase.Y, robotBase.Z + 890);
+
+
+            stl01.RotateZ(value);
+            stl02.RotateY(value);
+            stl03.RotateY(value);
+            stl04.RotateX(value);
+            stl05.RotateY(value);
+
+
+            stl01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+            stl02.SetPosition(robotBase.X + pointList[0].X - 25, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
+            stl02.RotateWXYZ(value, 0, 0, 1);
+            stl03.SetPosition(robotBase.X + pointList[0].X - 25 , robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
+            stl03.RotateWXYZ(value, 0, 0, 1);
+            stl03.SetPosition(robotBase.X + pointList[1].X - 25, robotBase.Y + pointList[1].Y, robotBase.Z + pointList[1].Z - 855);
+            stl03.RotateWXYZ(value, 0, 1, 0);
+       
+
+            //double[] x = stl01.GetPosition();
+            //stl02.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
+            //stl03.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
+            //stl04.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
+            //stl05.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
         }
 
         public myRobot(Geometry.Position robotBase, Geometry.Position angles)
@@ -348,9 +391,12 @@ namespace CoRo
 
             robotModel = vtkAssembly.New();
             actorList = new List<vtkActor>();
-            pointList = new List<Point>();
-            pointList = components.forwardKinematic(robotBase, angles);
-                        
+            pointList = new List<Position>();
+
+
+            pointList = components.kinematic(robotBase, angles);
+
+
             stl00 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
             stl01 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_01.stl"));
             stl02 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_02.stl"));
@@ -372,13 +418,20 @@ namespace CoRo
             stl03.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             stl04.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
             stl05.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
-            
+
+
+
             point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
             point01 = myVtk.drawPoint(pointList[1].X, pointList[1].Y, pointList[1].Z);
             point02 = myVtk.drawPoint(pointList[2].X, pointList[2].Y, pointList[2].Z);
             point03 = myVtk.drawPoint(pointList[3].X, pointList[3].Y, pointList[3].Z);
             point04 = myVtk.drawPoint(pointList[4].X, pointList[4].Y, pointList[4].Z);
             point05 = myVtk.drawPoint(pointList[5].X, pointList[5].Y, pointList[5].Z);
+
+            //draw RobotBase point
+            vtkActor robotBasePoint = myVtk.drawPoint(robotBase.X, robotBase.Y, robotBase.Z);
+            robotBasePoint.GetProperty().SetColor(255, 0, 0);
+            actorList.Add(robotBasePoint);
 
             actorList.Add(point00);
             actorList.Add(point01);
