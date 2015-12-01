@@ -80,7 +80,7 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <TabControl x:Name="tabControl" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="2" BorderBrush="LightGray" Margin="0,-2,0,0" Grid.ColumnSpan="2">
+            <TabControl x:Name="tabControl" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="2" BorderBrush="LightGray" Margin="0,-2,0,0" Grid.ColumnSpan="2" >
                 <TabItem Header="TabItem" Visibility="Collapsed">
                     <Grid>
                         <Grid.RowDefinitions>

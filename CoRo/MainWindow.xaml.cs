@@ -273,44 +273,25 @@ namespace CoRo
             renderer.RemoveActor(myRobotAssembly);
 
             
-            myRobot.rotateA2(10);
+            myRobot.rotateA1(-10);
             renderer.AddActor(myRobot.getRobotModel);
-
+            renderControl.Refresh();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            renderer.RemoveActor(myRobotAssembly);
+            //for (double i = 0; i < 10; i = i + 1)
+            //{
+                renderer.RemoveActor(myRobotAssembly);
 
-            myRobot.rotateA1(10);
-            renderer.AddActor(myRobot.getRobotModel);
+                myRobot.rotateA1(10);
+                renderer.AddActor(myRobot.getRobotModel);
+
+                renderControl.Refresh();
+            //}
+            
         }
+
     }
 
-    public class vtkTimerCallback
-    {
-        public void Execute(vtkObject caller, uint eventId, IntPtr callData)
-        {
-            ++this.TimerCount;
-            actor.SetPosition(this.TimerCount, this.TimerCount, 0);
-            iren.GetRenderWindow().Render();
-        }
-        private int TimerCount = 0;
-        public vtkActor actor;
-        public vtkRenderWindowInteractor iren;
-    }
-
-    public class myCommand : vtkCommand
-    {
-        public myCommand()
-        {
-
-        }
-
-        public override void Execute(vtkObject caller, uint eventId, IntPtr callData)
-        {
-            base.Execute(caller, eventId, callData);
-            Console.WriteLine("Callback!");
-        }
-    }
 }

@@ -35,6 +35,7 @@ namespace CoRo
             mapper.SetInput(plane);
             floor = vtkActor.New();
             floor.SetMapper(mapper);
+            floor.SetPosition(0, 0, 0);
             floor.GetProperty().SetColor(0.8, 0.8, 0.8);
             return floor;
         }
@@ -316,7 +317,13 @@ namespace CoRo
         public void rotateA1(double value)
         {
             angles.X -= value;
-
+            angles.Y += value;
+            angles.Z += value;
+            angles.A += value;
+            //angles.B += value;
+            //angles.C += value;
+            //actorList.Clear();
+            
             pointList = components.kinematic(robotBase, angles);
 
             point00 = myVtk.drawPoint(pointList[0].X, pointList[0].Y, pointList[0].Z);
@@ -333,6 +340,7 @@ namespace CoRo
             line03 = myVtk.drawLines(pointList[3].X, pointList[3].Y, pointList[3].Z, pointList[4].X, pointList[4].Y, pointList[4].Z);
             line04 = myVtk.drawLines(pointList[4].X, pointList[4].Y, pointList[4].Z, pointList[5].X, pointList[5].Y, pointList[5].Z);
 
+
             actorList.Add(point00);
             actorList.Add(point01);
             actorList.Add(point02);
@@ -345,7 +353,7 @@ namespace CoRo
             actorList.Add(line02);
             actorList.Add(line03);
             actorList.Add(line04);
-
+            
 
             stl01.SetPosition(-robotBase.X, -robotBase.Y, -robotBase.Z);
             stl02.SetPosition(-robotBase.X - 25, -robotBase.Y, -robotBase.Z - 400);
@@ -353,7 +361,7 @@ namespace CoRo
             stl04.SetPosition(-robotBase.X, -robotBase.Y, robotBase.Z - 890);
             stl05.SetPosition(-robotBase.X - 445, -robotBase.Y, -robotBase.Z - 890);
 
-            
+
             stl01.SetOrigin(robotBase.X, robotBase.Y, robotBase.Z);
             stl02.SetOrigin(robotBase.X + 25, robotBase.Y, robotBase.Z + 400);
             stl03.SetOrigin(robotBase.X + 25, robotBase.Y, robotBase.Z + 855);
@@ -369,19 +377,25 @@ namespace CoRo
 
 
             stl01.SetPosition(robotBase.X, robotBase.Y, robotBase.Z);
+
             stl02.SetPosition(robotBase.X + pointList[0].X - 25, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
             stl02.RotateWXYZ(value, 0, 0, 1);
-            stl03.SetPosition(robotBase.X + pointList[0].X - 25 , robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
+
+
+            stl03.SetPosition(robotBase.X + pointList[0].X - 25, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
             stl03.RotateWXYZ(value, 0, 0, 1);
             stl03.SetPosition(robotBase.X + pointList[1].X - 25, robotBase.Y + pointList[1].Y, robotBase.Z + pointList[1].Z - 855);
-            stl03.RotateWXYZ(value, 0, 1, 0);
-       
+            stl03.RotateY(value);
 
-            //double[] x = stl01.GetPosition();
-            //stl02.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
-            //stl03.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
-            //stl04.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
-            //stl05.SetPosition(+pointList[0].X - robotBase.X, +pointList[0].Y - robotBase.Y, +pointList[0].Z - robotBase.Z);
+
+            /*
+            stl04.SetPosition(robotBase.X + pointList[0].X, robotBase.Y + pointList[0].Y, robotBase.Z + pointList[0].Z - 400);
+            stl04.RotateWXYZ(value, 0, 0, 1);
+            stl04.SetPosition(robotBase.X + pointList[1].X, robotBase.Y + pointList[1].Y, robotBase.Z + pointList[1].Z - 855);
+            stl04.RotateY(value);
+            //stl04.SetPosition(robotBase.X + pointList[2].X, robotBase.Y + pointList[2].Y, robotBase.Z + pointList[2].Z - 890);
+            */
+            
         }
 
         public myRobot(Geometry.Position robotBase, Geometry.Position angles)
@@ -403,6 +417,8 @@ namespace CoRo
             stl03 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_03.stl"));
             stl04 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_04.stl"));
             stl05 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_05.stl"));
+
+            stl00.GetProperty().SetColor(0.3, 0.3, 0.3);
 
 
             actorList.Add(stl00);
@@ -439,6 +455,7 @@ namespace CoRo
             actorList.Add(point03);
             actorList.Add(point04);
             actorList.Add(point05);
+
 
             line00 = myVtk.drawLines(pointList[0].X, pointList[0].Y, pointList[0].Z, pointList[1].X, pointList[1].Y, pointList[1].Z);
             line01 = myVtk.drawLines(pointList[1].X, pointList[1].Y, pointList[1].Z, pointList[2].X, pointList[2].Y, pointList[2].Z);
