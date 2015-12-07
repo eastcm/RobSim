@@ -97,7 +97,7 @@ namespace CoRo
         vtkAxesActor axes04;
         vtkAxesActor axes05;
 
-        MySimulation components = new MySimulation();
+        MySimulation simulation = new MySimulation();
         VTKComponents myVtk = new VTKComponents();
         List<Position> positionList;
 
@@ -140,7 +140,7 @@ namespace CoRo
             //angles.B += value;
             //angles.C += value;
 
-            positionList = components.kinematic(robotBase, angles);
+            positionList = simulation.kinematic(robotBase, angles);
 
             #region Axes
             axesAssembly.RemovePart(axes00);
@@ -247,7 +247,7 @@ namespace CoRo
 
             positionList = new List<Position>();
 
-            positionList = components.kinematic(robotBase, angles);
+            positionList = simulation.kinematic(robotBase, angles);
             
             #region STL
             stl00 = myVtk.readSTL(string.Concat(Environment.CurrentDirectory, @"\Robot\agilus_00.stl"));
