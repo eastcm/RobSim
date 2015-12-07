@@ -940,3 +940,8 @@ U:\RobSim\CoRo\obj\Debug\UserControlValueControl.baml
 U:\RobSim\CoRo\obj\Debug\CoRo.g.resources
 U:\RobSim\CoRo\obj\Debug\CoRo.Properties.Resources.resources
 U:\RobSim\CoRo\obj\Debug\CoRo.csproj.GenerateResource.Cache
+U:\RobSim\CoRo\bin\Debug\IRob.dll
+U:\RobSim\CoRo\bin\Debug\SlimDX.dll
+U:\RobSim - Kopie\CoRo\bin\Debug\CoRo.exe.config
+U:\RobSim - Kopie\CoRo\obj\Debug\CoRo.exe
+U:\RobSim - Kopie\CoRo\obj\Debug\CoRo.pdb

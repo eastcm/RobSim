@@ -101,7 +101,7 @@
     </Reference>
     <Reference Include="IRob, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Klassen\IRob\IRob\bin\Debug\IRob.dll</HintPath>
+      <HintPath>C:\Users\merchelch49090\Desktop\IRob\IRob\bin\Debug\IRob.dll</HintPath>
     </Reference>
     <Reference Include="Kitware.mummy.Runtime, Version=1.0.2.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>

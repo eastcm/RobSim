@@ -138,18 +138,15 @@ namespace CoRo
         }
 
 
-        Components components;
+        VTKComponents components;
         Robot robot = new Robot();
         Robot robot2 = new Robot();
         vtkRenderer renderer;
-        myRobot myRobot;
-        myRobot myRobot2;
-        vtkAssembly myRobotAssembly;
-        vtkAssembly myRobotAssembly2;
+        RobotModel myRobot;
+        RobotModel myRobot2;
 
         private void WFHost_Loaded(object sender, RoutedEventArgs e)
         {
-
 
             renderer = renderControl.RenderWindow.GetRenderers().GetFirstRenderer();
             renderer.GradientBackgroundOn();
@@ -160,7 +157,7 @@ namespace CoRo
             vtkRenderWindowInteractor renderWindowInteractor = vtkRenderWindowInteractor.New();
             renderWindowInteractor.SetRenderWindow(renderWindow);
 
-            components = new Components();
+            components = new VTKComponents();
 
             renderer.AddActor(components.drawFloor());
             renderer.AddActor(components.drawCoordinates());
@@ -180,9 +177,12 @@ namespace CoRo
             robot.Axs.B = 0;
             robot.Axs.C = 0;
 
-            myRobot = new myRobot(robot.Pos, robot.Axs);
-            myRobotAssembly = myRobot.getRobotModel;
-            renderer.AddActor(myRobotAssembly);
+            myRobot = new RobotModel(robot.Pos, robot.Axs);
+            myRobot.getStlModel.SetVisibility(0);
+            renderer.AddActor(myRobot.getStlModel);
+            renderer.AddActor(myRobot.getAxesModel);
+            renderer.AddActor(myRobot.getLineModel);
+            renderer.AddActor(myRobot.getPointModel);
 
             /*
             myRobot = new myRobot(robot.Pos, robot.Axs);
@@ -270,11 +270,7 @@ namespace CoRo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            renderer.RemoveActor(myRobotAssembly);
-
-            
             myRobot.rotateA1(-10);
-            renderer.AddActor(myRobot.getRobotModel);
             renderControl.Refresh();
         }
 
@@ -282,14 +278,12 @@ namespace CoRo
         {
             //for (double i = 0; i < 10; i = i + 1)
             //{
-                renderer.RemoveActor(myRobotAssembly);
+            myRobot.rotateA1(10);
+            renderControl.Refresh();
 
-                myRobot.rotateA1(10);
-                renderer.AddActor(myRobot.getRobotModel);
 
-                renderControl.Refresh();
             //}
-            
+
         }
 
     }
