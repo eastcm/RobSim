@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="8e3d0572-5c7b-47c3-9474-06caeed20826"
+  name="IRob"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f20ecf8f-8d60-4cf9-9add-6f9f405c1d70"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DIRob"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="b6d6a830-f52d-42d6-b912-6201492c0a7e"
+        name="Geometry"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7ed65289-c744-42f3-be17-9892d9a5b539"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3633c006-d582-4c8b-ac9e-347d3a21bfe2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="93849533-5654-4d14-b9ea-b1913e0a42b6">
+                <propertyInstance
+                  Id="9a627f6e-0627-4eb8-bb55-6fe563b112d7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="75394de9-3325-4307-adae-57e1c40b75e3">
+                <propertyInstance
+                  Id="ac0aaa45-1cdc-4c54-9d76-41778c2b1eab"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d6c152ff-71fd-4bb6-b41e-83dd272c4524">
+                <propertyInstance
+                  Id="49b8b153-6231-4b3b-aedd-d3e9c3cc4e4f"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d1919bb8-2ac3-4b77-9ef9-d62c64bb5f8b">
+                <propertyInstance
+                  Id="4f43551c-1431-4d31-8c93-75233e4b60fe"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2c76b6ad-f227-4a31-8e30-e54bc410ca08">
+                <propertyInstance
+                  Id="5f477b5e-8f02-49cc-89ba-ade75ab42727"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9d1f7a12-8c1c-4ec1-ad3d-4c94a992a159"
+            name="Normal"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7f27cd37-7df2-4ff8-ae43-bcff48456f6f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DNormal OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DTriangle ParentType%3DGeometry))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="568a7e4a-e508-457c-bd7e-d34289f08f59"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e4b61b3-6e57-4b44-8711-89d403dc6791">
+                    <propertyInstance
+                      Id="60949828-3dfe-422b-8d28-ef62f6161511"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2830acbd-c4d4-4de7-a4d0-e3266b262378">
+                    <propertyInstance
+                      Id="d455fecc-e853-4886-8dce-51f9e4439c9b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc66e72d-1527-4676-b7b3-c03da3dd97c4">
+                    <propertyInstance
+                      Id="c845f9ff-146c-4b74-9207-c166875b156f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c11b772-b0a1-464a-87b2-c3b72a51488d">
+                    <propertyInstance
+                      Id="4cb810f9-e42b-4784-ac45-7a97769b5d4e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e9aafdc-1dfd-46e9-a82c-2e69cd2537cb">
+                    <propertyInstance
+                      Id="7051ffbf-94f9-4770-acd1-e0ac67e7e539"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b2a6784-c057-4cfb-8431-b6452f1688c2">
+                    <propertyInstance
+                      Id="3737d847-c075-4832-bac0-1f416ec344ed"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4a3afd07-d36d-4ebc-a20e-f90db6f77282"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4a860664-df36-4a82-91db-ea5e69a2ebe8"
+                  name="Rect"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1acc90fb-9899-4fb1-99dc-9885557d6131"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DNormal OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DTriangle ParentType%3DGeometry))]) ParameterIdentifier%3DRect"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80213ccf-0ce0-4e4c-b623-74ec6eda1381"
+                      LastKnownName="Triangle"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="6fd5abb1-c436-4e4d-9e7d-e6614228d3dc"
+            name="Center"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1219a4b2-4db0-4d7e-acd4-8f37dd90fcac"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DCenter OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DTriangle ParentType%3DGeometry))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="11e23d79-9be2-4fab-89de-2a85b076d192"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15132a5c-5e1a-4c5c-ae63-050fc4db2683">
+                    <propertyInstance
+                      Id="3a5703c9-b2d3-4272-a35b-a1204c86ebb9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ece584bd-0267-479a-affd-481248dad9e8">
+                    <propertyInstance
+                      Id="080c1c3f-6873-41c1-a1b9-209ae0c11788"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4d897d6b-f3ac-4f43-889d-e29bf3dbe7ce">
+                    <propertyInstance
+                      Id="440d3a92-6171-4966-877d-560b1ecbdb54"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bef0d093-5cf0-4f07-a0ab-20c7748e1ca2">
+                    <propertyInstance
+                      Id="d820c81c-b7ef-4114-b511-aa6b08cdb548"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78e698e7-1b31-40a0-9ae3-166cb3326c32">
+                    <propertyInstance
+                      Id="cc5d86bf-6927-4911-9bb3-7d8d7cff163a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5fb006b6-06a2-4d0b-a93e-de5a130a40e2">
+                    <propertyInstance
+                      Id="a4202cc5-721b-4d4b-b497-f436c41b4a13"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="76a41a8d-1395-432d-9446-332ff60daa25"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="71b71f26-3259-4ff6-ba0c-b2265f13ec28"
+                  name="Rect"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="85999754-eda5-47ec-bc73-84eaf3c2622d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DCenter OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DTriangle ParentType%3DGeometry))]) ParameterIdentifier%3DRect"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80213ccf-0ce0-4e4c-b623-74ec6eda1381"
+                      LastKnownName="Triangle"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bf877391-1868-4001-a0e1-19722a08695c"
+            name="Subtract"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bd9f76aa-18b7-4959-a69a-155a6933638a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DSubtract OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="27d64cb3-b253-48a1-bd0c-c3cb86a7f5d2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8aa47bf8-968d-498b-af49-fe4dbe0d1c29">
+                    <propertyInstance
+                      Id="b2a1df55-f46b-47f2-be4b-e5ababd0b24a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8aaf4b31-b9bb-43d7-8406-0c71d9b7c589">
+                    <propertyInstance
+                      Id="c112ed89-e8b0-4118-b4c0-976534668817"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b260d2f7-fc4b-4455-a4cc-1680c014899b">
+                    <propertyInstance
+                      Id="cf0fdcd1-1c9c-4a5b-aaa8-760e6bfad191"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd223ff8-6cd7-4293-89b4-1bb2ac925249">
+                    <propertyInstance
+                      Id="fe9b60da-8574-4f6c-8817-472238996e29"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7f1058d-3c02-430e-8bee-46c6ba0e5172">
+                    <propertyInstance
+                      Id="98c0bc8b-447c-46bc-bc6e-12156b6253f2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df9c0cee-42f8-42b6-abaf-8cc478a13a98">
+                    <propertyInstance
+                      Id="372a32a9-1b12-4c41-b578-bcb7b0ad7494"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e0ccfeb7-0549-4dd5-ad4a-81b8e2209568"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cb8e3114-573d-4818-86c7-fd447acf43b2"
+                  name="Tip"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="02e2b4d3-2966-4b83-9968-09672a38abe0"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DSubtract OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))]) ParameterIdentifier%3DTip"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cb94683c-bd9f-4c84-98db-defd55a17715"
+                  name="Base"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9dc39a00-6366-4305-b4c8-9c61d2ec9f42"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DSubtract OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry))]) ParameterIdentifier%3DBase"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+                      LastKnownName="Point"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e53d172f-f2e5-46db-84a6-cb704b6cf518"
+            name="RotationMatrix"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ddcca2a4-4bce-4abc-af65-1e7794466d8b"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DRotationMatrix OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b7da1fb3-9d54-41da-9dae-2db74c0b4c9a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f40f655a-8382-498b-b69a-faf70b19b4d1">
+                    <propertyInstance
+                      Id="b54f638c-5d06-4d29-ac2b-a6dc2afb9b7b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="817bfed6-ab17-49e1-bef5-b57ae2ea4f1c">
+                    <propertyInstance
+                      Id="b3c64806-9d8b-47ce-97b3-3f406cc5a58e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a7a165c5-2f34-493b-a6c8-c4d2ae5d949b">
+                    <propertyInstance
+                      Id="438949b5-0860-4bee-bf9d-656cd702b821"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c0fe9797-15e9-4a63-be4c-704326898cbd">
+                    <propertyInstance
+                      Id="45acc439-59c7-47e7-bc00-29cdc0fb6429"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4e10ae7-a51f-484a-b021-8e3ac459c8f7">
+                    <propertyInstance
+                      Id="622011c4-f8a4-448a-a2dc-b12525173331"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22c03ac5-788e-485b-bf5d-ab0df1d5edbb">
+                    <propertyInstance
+                      Id="6ba12f20-3a3e-47c7-81f6-776c00bd931c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="299680f2-da97-417c-8468-4734aad80cb9"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="07fe2506-11a5-4f81-b5f9-9be86f3f45f8"
+                      LastKnownName="Matrix"
+                      LastKnownLocation="Package_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="91222b93-fea8-43bb-b423-8afc7a38d485"
+                  name="a"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3a6babb0-2886-4c64-a9b4-e70bbc0949c3"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DRotationMatrix OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3Da"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="908bafc1-b16e-4464-b487-9571cba1da53"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6338f0c5-0ce1-4a99-a72b-786f16c9df02"
+                  name="b"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0752ef6e-e630-4557-a95a-cdb7c05d0aa4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DRotationMatrix OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3Db"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="908bafc1-b16e-4464-b487-9571cba1da53"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dccf19ff-036d-470d-9857-c1d5811eeb2d"
+                  name="c"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="df0eb9bc-92a3-48e1-b7d4-d5ebed909a29"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D(Name%3DRotationMatrix OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)]) ParameterIdentifier%3Dc"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="908bafc1-b16e-4464-b487-9571cba1da53"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_0915.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a07a7542-f46c-4a54-8863-9586a9ab9850"
+            name="Geometry"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="c63aab1a-a3da-4821-ac79-9023338616fb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3DGeometry Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ba7dfe0f-3403-4e89-808c-98695c988e82"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c0dc6956-acc1-4483-865c-e2c51fd67b3c">
+                    <propertyInstance
+                      Id="c89c5532-cef7-4fac-ac6f-592de30a74fe"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce2ba0b1-d0a0-48c2-8d4e-88ec2f90fa49">
+                    <propertyInstance
+                      Id="8f91eca1-14c3-44f8-b0eb-70e860e596fb"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f546fdba-a401-4d98-b037-c4259d716e40">
+                    <propertyInstance
+                      Id="e909070f-1615-439a-a2e4-ec0fee16785a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3fb52116-bf6d-4c46-9ba7-d27cf12cfe8c">
+                    <propertyInstance
+                      Id="b5071619-7c66-4a46-80f6-9c82d6f40440"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="50a110c5-7a27-42fb-9129-52042fe91970">
+                    <propertyInstance
+                      Id="2a2a4963-e029-4ae0-ac22-b31bb86b8cb3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d51778ef-0b2a-44ab-b80e-7541efca98a7">
+                    <propertyInstance
+                      Id="3c7ac532-920f-4ec8-a97d-fd37157490fe"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="96d17e92-13ea-4021-9b1f-3dd17709e1ab"
+        name="Point"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7452ef07-3eec-4c26-8ab9-d4be1739b00f"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DPoint ParentType%3DGeometry)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c374ba17-f8ef-4cdf-9010-bf37269e0672"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d0901642-e289-46da-a570-a21244f520a5">
+                <propertyInstance
+                  Id="55378578-bd10-4ab5-bc1f-5938cd42a938"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="78db7bab-59b0-47b7-ab01-0e50dbc5083a">
+                <propertyInstance
+                  Id="1fd31ebb-5ea2-4448-bdc6-2eb1a7ba5229"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d707f6cf-f1db-4d6e-bc99-a2ae37d23bbb">
+                <propertyInstance
+                  Id="736c1dda-b64b-46ea-8e1d-b13db70a10eb"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9ab5eb4d-d853-4558-8e50-9c81a27b772e">
+                <propertyInstance
+                  Id="b9d18005-9912-4d84-a6b3-cee767ea418a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="80213ccf-0ce0-4e4c-b623-74ec6eda1381"
+        name="Triangle"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="1051a15d-b85c-49aa-8c37-9f003dbc8150"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DTriangle ParentType%3DGeometry)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7f9a9a6c-54ca-4745-b546-f78693f9102a"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f7abb6b0-25fb-4f8f-bf19-67f0bb27cd0f">
+                <propertyInstance
+                  Id="03efcc7b-6662-45d3-9f6d-20dd925a3d46"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c01eaa3f-9416-42b3-831e-189c8e3eaf14">
+                <propertyInstance
+                  Id="7a979cf8-d3cc-4fdb-b909-7fe858533fce"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="82888d9c-e723-4d76-abcf-bdbd3a95f738">
+                <propertyInstance
+                  Id="1397f344-4486-4d20-954c-d012e566ebf9"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fd51339c-3602-4196-9bc7-cb208ae445aa">
+                <propertyInstance
+                  Id="f6ac2093-7875-4cde-b6d4-f86625c5a417"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="07fe2506-11a5-4f81-b5f9-9be86f3f45f8"
+        name="Matrix"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a9bc3291-45f5-4fed-b9a7-f7c58779a953"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAdmin%2FDesktop%2FKlassen%2FIRob%2FIRob%2Fbin%2FDebug%2FIRob.dll Namespace%3DIRob Type%3D(Name%3DMatrix ParentType%3DGeometry)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3b94873b-db03-4791-a771-f1e970c2cb42"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ef7e105c-fa59-4015-a75f-f5b3789feec4">
+                <propertyInstance
+                  Id="b6479f8b-768a-4c9b-b3ec-845e74b0c7f5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a67de737-2e61-4251-9c43-b7a675c441f1">
+                <propertyInstance
+                  Id="6c9b28ec-6c6d-4e9c-9160-abb0ffe2070b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="872adfb8-1499-432d-afeb-1e9cd78654e8">
+                <propertyInstance
+                  Id="5a27c85c-c104-47b2-b1c4-5ce218836273"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c8c5fda7-d953-44e7-8d8f-53cca0352393">
+                <propertyInstance
+                  Id="106ff48d-03a0-48ff-85c7-b1dcdfc6685c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

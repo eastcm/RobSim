@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CoRo.UserControlNumericControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoRo"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="120">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="95"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Label Content="{Binding Path=Label}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Grid.Column="1">
+        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button x:Name="minus" Content="-" FontWeight="Bold" Width="20" DockPanel.Dock="Left" Foreground="Black" BorderBrush="LightGray" Click="buttonMinus_Click"/>
+            <TextBox x:Name="textbox" Text="0.00" TextAlignment="Center" Width="50" PreviewTextInput="textbox_PreviewTextInput" TextChanged="textbox_TextChanged"/>
+            <Button x:Name="plus" Content="+" FontWeight="Bold" Width="20" DockPanel.Dock="Right" Foreground="Black" BorderBrush="LightGray" Click="buttonPlus_Click"/>
+        </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

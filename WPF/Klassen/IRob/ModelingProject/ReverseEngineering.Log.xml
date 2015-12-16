@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Codegenerierungs-/Texttransformationsprotokoll">
+  <MessageClass Name="Message" Label="Meldung" Option="Informationsmeldungen anzeigen" />
+  <MessageClass Name="Warning" Label="Warnung" Option="Warnungen anzeigen" />
+  <MessageClass Name="Error" Label="Fehler" Option="Fehler anzeigen" />
+  <MessageClass Name="Property" Label="Eigenschaft" Option="Metadaten anzeigen" />
+  <MessageClass Name="Diagnostic" Label="Meldung" Option="Diagnosemeldungen anzeigen" />
+  <Message Timestamp="2015-03-03T09:15:56" Importance="High" Text="Reverse Engineering gestartet." />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob' -  (Package)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Medium" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry' -  (Class)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Center' -  (Operation)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Center::Rect' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Geometry' -  (Operation)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Normal' -  (Operation)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Normal::Rect' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::RotationMatrix' -  (Operation)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::RotationMatrix::a' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::RotationMatrix::b' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::RotationMatrix::c' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Subtract' -  (Operation)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Subtract::Base' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Geometry::Subtract::Tip' -  (Parameter)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Matrix' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Point' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::IRob::Triangle' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::System' -  (Package)" />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="Diagnostic" Text="Reverse Engineering des Elements in das UML-Modell: 'ModelingProject::System::Double' -  (Class) (Reverse Engineering teilweise durchgeführt - Definition nicht aktualisiert) " />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="High" Text="Vollständiges Reverse Engineering für (1) Type(n)." />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="High" Text="Reverse Engineering für (4) Type(n) teilweise durchgeführt. Diese Typen waren nicht in der ursprünglichen Auswahl enthalten, sodass kein Reverse Engineering für deren vollständige Definitionen durchgeführt wurde. Stattdessen wurde bei diesem oberflächlichen Vorgang lediglich sichergestellt, dass diese Typen im UML-Modell vorhanden sind, da diese erforderlich sind, um andere Elemente vollständig zu beschreiben." />
+  <Message Timestamp="2015-03-03T09:15:57" Importance="High" Text="Der Reverse Engineering-Vorgang wurde mit (0) Fehler(n) und (0) Warnung(en) abgeschlossen." />
+</Log>

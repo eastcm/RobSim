@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="CoRo.UserControlButtonSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:CoRo"
+             d:DesignHeight="30" Width="126">
+    <Grid>
+        <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="False" Margin="2,2,2,2" VerticalAlignment="Top" Width="120">
+            <Label Content="{Binding Path=Label}" Height="30" Width="90" VerticalAlignment="Center"/>
+            <Button Content="{Binding Path=ButtonText}" Height="26" Width="30" VerticalAlignment="Top" Click="Button_Click"/>
+        </DockPanel>
+
+    </Grid>
+</UserControl>
+
